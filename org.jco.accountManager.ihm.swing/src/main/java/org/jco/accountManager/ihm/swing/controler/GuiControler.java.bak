@@ -186,6 +186,7 @@ public class GuiControler {
 	private void removeEventFromAccountTab(final String accountNumber, final IAccountEvent accountEvent) { 
 		CounterTab tab = this.counterTabMap.get(accountNumber);
 		if (tab != null) {
+			System.out.println(accountEvent.getLabel());
 			tab.removeEvent(accountEvent);
 		}
 	}
@@ -206,6 +207,7 @@ public class GuiControler {
 			this.controler.deleteAccountEvent(event);
 			this.updateAccountLine(account.getName());
 			this.repaintCountsLines();
+			paintAccountsList();
 			removeEventFromAccountTab(account.getNumber(), event);
 		} 
 	}

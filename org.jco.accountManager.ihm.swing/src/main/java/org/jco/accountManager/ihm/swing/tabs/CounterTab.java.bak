@@ -322,7 +322,6 @@ public class CounterTab {
 	}
 	
 	public void removeEvent(IAccountEvent event) {
-		System.out.println("Removing "+Serializator.serializeAccountEventToString(event));
 		this.eventList.remove(event);
 		this.shownEventList.remove(event);
 		this.refreshTable();
@@ -334,10 +333,8 @@ public class CounterTab {
 		this.getEventsTable().removeAll();
 		MyTableModel model = (MyTableModel) this.getEventsTable().getModel();
 		model.setRowCount(0);
-		System.out.println("=== Shown event list in tab "+this.name+" ==============================================");
 		for( IAccountEvent event: this.shownEventList){
-			System.out.println(Serializator.serializeAccountEventToString(event));
-			model.insertRow(model.getRowCount(), Serializator.serializeAccountEventToRow(event));
+			model.insertRow(0, Serializator.getAccountEventToRow(event));
 		}
 		((DefaultTableModel)getEventsTable().getModel()).fireTableDataChanged();
 	}
@@ -472,12 +469,13 @@ public class CounterTab {
 			int row = this.counterTab.getEventsTable().convertRowIndexToModel(this.counterTab.getEventsTable().getEditingRow());
 			IAccountEvent event = this.counterTab.getShownEventList().get(row);
 			if( !event.isEffective() ){
-				System.out.println("ACTION PERFORMED ON ROW "+row+" : Set event effectif.");
 				this.counterTab.getControler().setEventEffectif(event);
+				refreshTable();
 				this.counterTab.getEventsTable().repaint();
+				setButtonText("Supprimer");
 			} else {
-				System.out.println("ACTION PERFORMED ON ROW "+row+" : Remove event.");
 				this.counterTab.getControler().removeAccountEvent(event);
+				refreshTable();
 				this.counterTab.getEventsTable().repaint();
 			}
 		}

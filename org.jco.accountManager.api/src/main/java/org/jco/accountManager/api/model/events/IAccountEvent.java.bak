@@ -10,7 +10,7 @@ import java.util.Date;
 public interface IAccountEvent extends Comparable<IAccountEvent> {
 
 	public final static int EVENT_TYPE_OUT = 0;
-	public final static int EVENT_TYPE_IN = 1;
+	public static final int EVENT_TYPE_IN = 1;
 
 	public float updateBalance(float lastBalance);
 

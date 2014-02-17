@@ -124,9 +124,6 @@ public class EventMoneyMovementWindow extends JDialog {
 				String montant = montantTextField.getText();
 				String label = labelTextField.getText();
 				Date date = dateChooser.getDate();
-				if( date == null ){
-					date = new Date();
-				}
 				controler.performEvent(from, to, montant, label, date);
 				dispose();
 			}
