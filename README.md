@@ -1,0 +1,1 @@
+Logiciel de gestion de comptes bancaires.
